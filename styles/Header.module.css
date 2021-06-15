@@ -1,0 +1,62 @@
+.container{
+    height: 70px;
+    background-color: blanchedalmond;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 4px solid black;
+}
+
+.logo{
+    margin-left: 1rem;
+}
+
+.nav{
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+}
+
+.navList{
+    padding: 0 .5rem;
+    width: 100%;
+    margin: 0 5rem 0 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+    list-style: none;
+}
+
+.navList > li{
+    font-size: 1.2rem;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+}
+
+.logo > h2{
+    margin: 0 0;
+}
+
+.sideButton{
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+    margin-left: 3rem;
+    cursor: pointer;
+}
+
+.sideButton > svg{
+    width: 40px;
+    height: 30px;
+}
+
+.sidebar{
+    position: fixed;
+    transition: transform .4s linear;
+    width: 20%;
+    top: 70px;
+}
