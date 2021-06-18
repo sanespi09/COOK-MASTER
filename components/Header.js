@@ -1,4 +1,4 @@
-import styles from '../styles/Header.module.css';
+import styles from '../styles/Header.module.scss';
 import ButtonPurp from './ButtonPurp';
 import ButtonSub from './ButtonSub';
 import Sidebar from './Sidebar';
@@ -8,10 +8,16 @@ import { useState, useEffect } from 'react';
 export default function Header ({activeIng}) {
 
     const [ sideActive, setSideActive ] = useState(false);
+    const [ theme, setTheme ] = useState('dark');
+    const nextTheme = theme === 'light' ? 'dark' : 'light';
 
     useEffect( () => {
-        console.log(activeIng);
-    }, [ activeIng ]);
+        document.body.dataset.theme = theme;
+    }, [ theme ]);
+
+    const changeTheme = (e) => {
+        setTheme(nextTheme);
+    }
 
     return (
         <div className={styles.container}>
@@ -20,14 +26,20 @@ export default function Header ({activeIng}) {
             </div>
             <div className={styles.nav}>
                 <ul className={styles.navList}>
+                    <Link href="/dash">
                     <li className={styles.misRecetas}>
                         <ButtonSub content='Mis Recetas' width='100px' height='50px' />
                     </li>
+                    </Link>
                     <Link href="/create">
                         <li className={styles.crear}>
                             <ButtonPurp content='Crear Receta' width='110px' height='45px' />
                         </li>
                     </Link>
+                    <div className={ theme === 'light' ? styles.themeButton : styles.themeButtonDark } onClick={changeTheme}>
+                        <span>🌚</span>
+                        <span>🌞</span>
+                    </div>
                 </ul>
                 <div className={styles.sideButton} onClick={() => setSideActive(!sideActive) }>
                     <svg

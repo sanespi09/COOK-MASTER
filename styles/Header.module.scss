@@ -4,7 +4,7 @@
     position: fixed;
     top: 0;
     height: 70px;
-    background-color: blanchedalmond;
+    background-color: var(--bg-color);
     padding: 1rem;
     display: flex;
     justify-content: space-between;
@@ -56,4 +56,39 @@
 .sideButton > svg{
     width: 40px;
     height: 30px;
+}
+
+.themeButton{
+    background-color: var(--colors-bg);
+    border-radius: 10px;
+    border: 3px solid black;
+    padding: 0 .3rem;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: 0px;
+        left: -1px;
+        z-index: 10;
+        background-color: rgb(73, 73, 73);
+        width: 50%;
+        height: 90%;
+        border-radius: 10px;
+        border: 2px solid black;
+        transition: all .3s ease-in-out;
+    }
+}
+
+.themeButtonDark{
+    composes: themeButton;
+
+    &:after{
+        transform: translateX(100%);
+    }
+    
 }
