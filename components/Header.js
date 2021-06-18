@@ -5,10 +5,11 @@ import Sidebar from './Sidebar';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import dynamic from 'next/Dynamic';
+import ThemeSwitch from './ThemeSwitch';
 
-const ThemeSwitch = dynamic( () => import("../components/ThemeSwitch"),{
-    ssr: false,
-});
+// const ThemeSwitch = dynamic( () => import("../components/ThemeSwitch"),{
+//     ssr: false,
+// });
 
 export default function Header ({activeIng}) {
 
@@ -31,7 +32,7 @@ export default function Header ({activeIng}) {
                             <ButtonPurp content='Crear Receta' width='110px' height='45px' />
                         </li>
                     </Link>
-                    <div className={styles.Themeswitch}>
+                    <div className={styles.themeSwitch}>
                         <ThemeSwitch />
                     </div>
                 </ul>
