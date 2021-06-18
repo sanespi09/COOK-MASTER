@@ -4,26 +4,15 @@ import ButtonSub from './ButtonSub';
 import Sidebar from './Sidebar';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import dynamic from 'next/Dynamic';
+
+const ThemeSwitch = dynamic( () => import("../components/ThemeSwitch"),{
+    ssr: false,
+});
 
 export default function Header ({activeIng}) {
 
     const [ sideActive, setSideActive ] = useState(false);
-    const [ theme, setTheme ] = useState();
-    const nextTheme = theme === 'light' ? 'dark' : 'light';
-
-    useEffect( () => {
-        document.body.dataset.theme = theme;
-    }, [ theme ]);
-
-    useEffect( () => {
-        let newTheme = window.localStorage.getItem('theme');
-        setTheme( newTheme)
-    }, []);
-
-    const changeTheme = (e) => {
-        setTheme(nextTheme);
-        window.localStorage.setItem('theme', nextTheme);
-    }
 
     return (
         <div className={styles.container}>
@@ -42,9 +31,8 @@ export default function Header ({activeIng}) {
                             <ButtonPurp content='Crear Receta' width='110px' height='45px' />
                         </li>
                     </Link>
-                    <div className={ theme === 'light' ? styles.themeButton : styles.themeButtonDark } onClick={changeTheme}>
-                        <span>🌚</span>
-                        <span>🌞</span>
+                    <div className={styles.Themeswitch}>
+                        <ThemeSwitch />
                     </div>
                 </ul>
                 <div className={styles.sideButton} onClick={() => setSideActive(!sideActive) }>
