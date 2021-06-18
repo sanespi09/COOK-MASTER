@@ -14,10 +14,10 @@ const firebaseConfig = {
   };
 
 if(!firebase.apps.length){
-firebase.initializeApp(firebaseConfig);
+    firebase.initializeApp(firebaseConfig);
 }
 else { 
-firebase.app();
+    firebase.app();
 }
 
 const db = firebase.firestore();
