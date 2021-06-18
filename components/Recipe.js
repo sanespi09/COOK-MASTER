@@ -1,9 +1,16 @@
 import styles from '../styles/Recipe.module.css'
-import Ingredient from '../components/Ingredient'
+import Ingredient from './Ingredient'
+import IngredientDispatch from './context/IngredientDispatch';
+import { useContext } from 'react';
 
 export default function Recipe ({recipe}){
-
+    const dispatch = useContext(IngredientDispatch);
     const {name, ingredients, description} = recipe;
+
+
+    function handleIngClick(ing){
+        dispatch({type: 'add', payload: ing});
+    }
 
     return (
         <div className={styles.recipe}>
@@ -12,9 +19,9 @@ export default function Recipe ({recipe}){
             </div>
             <div className={styles.ingredients}>
                 {
-                    ingredients.map( ing => {
+                    ingredients.map( (ing, i) => {
                         return (
-                            <Ingredient name={ing} />
+                            <Ingredient onIngClick={handleIngClick} name={ing} key={i}/>
                         )
                     })
                 }

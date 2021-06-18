@@ -2,12 +2,16 @@ import styles from '../styles/Header.module.css';
 import ButtonPurp from './ButtonPurp';
 import ButtonSub from './ButtonSub';
 import Sidebar from './Sidebar';
-import Image from 'next/image';
-import { useState } from 'react';
+import Link from 'next/link';
+import { useState, useEffect } from 'react';
 
-export default function Header (props) {
+export default function Header ({activeIng}) {
 
     const [ sideActive, setSideActive ] = useState(false);
+
+    useEffect( () => {
+        console.log(activeIng);
+    }, [ activeIng ]);
 
     return (
         <div className={styles.container}>
@@ -19,9 +23,11 @@ export default function Header (props) {
                     <li className={styles.misRecetas}>
                         <ButtonSub content='Mis Recetas' width='100px' height='50px' />
                     </li>
-                    <li className={styles.crear}>
-                        <ButtonPurp content='Crear Receta' width='110px' height='45px' />
-                    </li>
+                    <Link href="/create">
+                        <li className={styles.crear}>
+                            <ButtonPurp content='Crear Receta' width='110px' height='45px' />
+                        </li>
+                    </Link>
                 </ul>
                 <div className={styles.sideButton} onClick={() => setSideActive(!sideActive) }>
                     <svg
@@ -56,9 +62,7 @@ export default function Header (props) {
                     </svg>
                 </div>
             </div>
-            <div style={sideActive ? {transform:'translateX(calc(100vw - 100%)'} : {transform: 'translateX(calc(100vw + 100%))'}}className={styles.sidebar}>
-                <Sidebar />
-            </div>
+            <Sidebar active={sideActive} activeIng={activeIng} />
         </div>
     )
 }

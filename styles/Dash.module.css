@@ -4,6 +4,21 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
     margin: 3rem auto;
     gap: 1rem;
 }
+
+.main{
+    margin-top: 10rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+}
+
+.ingredients{
+    width: 40%;
+}
+
+

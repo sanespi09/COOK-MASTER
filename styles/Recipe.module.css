@@ -7,6 +7,8 @@
     height: 350px;
     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.308);
     cursor: pointer;
+    animation: fadeIn .4s forwards;
+    transition: all .2s ease-in-out;
 }
 
 .recipe:hover{
@@ -25,4 +27,13 @@
 .description{
     margin-top: 1.5rem;
     text-align: justify;
+}
+
+@keyframes fadeIn {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity:1;
+    }
 }

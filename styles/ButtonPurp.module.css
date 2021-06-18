@@ -4,6 +4,7 @@
     border: 4px solid black;
     background-color: rgb(255, 179, 255);
     cursor: pointer;
+    transition: all .05s linear;
   }
   
 .button:hover{

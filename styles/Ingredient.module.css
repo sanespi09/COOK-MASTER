@@ -5,7 +5,8 @@
     border-radius: 10px;
     cursor: pointer;
     height: 30px;
-    padding: .2rem; 
+    padding: .2rem;
+    animation: fadeIn .2s forwards; 
 }
 
 .container > h4{
@@ -15,4 +16,14 @@
 
 .container:hover{
     background-color: rgb(255, 206, 116);
+}
+
+@keyframes fadeIn {
+    from{
+        opacity: 0;
+    }
+
+    to{
+        opacity: 1;
+    }
 }

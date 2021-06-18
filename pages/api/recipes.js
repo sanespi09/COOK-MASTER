@@ -1,33 +1,41 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+
+
 const recipes = [
   {
+    id:1,
     name: 'Risotto Capresse con Pollo',
     ingredients: ['Arroz', 'Pollo', 'Cebolla', 'Ajo', 'Tomate', 'Jengibre'],
     description: 'Risotto de arroz carnaroli con perfil de Capresse, sumado a una carne blanca para dar contundencia. Sabor Alimonado, Dulce y Terroso'
   },
   {
+    id:2,
     name: 'Risotto Capresse con Pollo',
     ingredients: ['Arroz', 'Pollo', 'Cebolla', 'Ajo', 'Tomate', 'Jengibre'],
     description: 'Risotto de arroz carnaroli con perfil de Capresse, sumado a una carne blanca para dar contundencia. Sabor Alimonado, Dulce y Terroso'
   },
   {
+    id:3,
     name: 'Risotto Capresse con Pollo',
     ingredients: ['Arroz', 'Pollo', 'Cebolla', 'Ajo', 'Tomate', 'Jengibre'],
     description: 'Risotto de arroz carnaroli con perfil de Capresse, sumado a una carne blanca para dar contundencia. Sabor Alimonado, Dulce y Terroso'
   },
   {
+    id:4,
     name: 'Risotto Capresse con Pollo',
     ingredients: ['Arroz', 'Pollo', 'Cebolla', 'Ajo', 'Tomate', 'Jengibre'],
     description: 'Risotto de arroz carnaroli con perfil de Capresse, sumado a una carne blanca para dar contundencia. Sabor Alimonado, Dulce y Terroso'
   },
   {
+    id:5,
     name: 'Risotto Capresse con Pollo',
     ingredients: ['Arroz', 'Pollo', 'Cebolla', 'Ajo', 'Tomate', 'Jengibre'],
     description: 'Risotto de arroz carnaroli con perfil de Capresse, sumado a una carne blanca para dar contundencia. Sabor Alimonado, Dulce y Terroso'
   },
 ]
 
+// export default (req, res) => {
+//   console.log(data);
+//   res.status(200).send(recipes.json());
+// } 
 
-export default (req, res) => {
-  res.status(200).json(recipes);
-} 
+export default recipes;
