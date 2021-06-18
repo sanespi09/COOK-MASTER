@@ -18,7 +18,7 @@ export default function Create ( props ){
 
     const pasosList = pasos.map( (paso, i) => {
         return(
-            <div className={styles.formSection} key={i}>
+            <div className={styles.paso} key={i}>
                 <label>{i+1}</label>
                 <textarea rows={5} value={paso} className={styles.input}></textarea>
             </div>

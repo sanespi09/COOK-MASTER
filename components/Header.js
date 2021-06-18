@@ -8,15 +8,21 @@ import { useState, useEffect } from 'react';
 export default function Header ({activeIng}) {
 
     const [ sideActive, setSideActive ] = useState(false);
-    const [ theme, setTheme ] = useState('dark');
+    const [ theme, setTheme ] = useState();
     const nextTheme = theme === 'light' ? 'dark' : 'light';
 
     useEffect( () => {
         document.body.dataset.theme = theme;
     }, [ theme ]);
 
+    useEffect( () => {
+        let newTheme = window.localStorage.getItem('theme');
+        setTheme( newTheme)
+    }, []);
+
     const changeTheme = (e) => {
         setTheme(nextTheme);
+        window.localStorage.setItem('theme', nextTheme);
     }
 
     return (

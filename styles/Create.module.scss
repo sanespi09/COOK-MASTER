@@ -1,9 +1,10 @@
 .container{
     display: flex;
     flex-direction: column;
-    margin-top: 10rem;
+    width: 90%;
+    margin: 0 auto;
     align-items: center;
-    margin-bottom: 20em;
+    padding-bottom: 20em;
 }
 
 .form{
@@ -17,7 +18,8 @@
     margin-top: 1rem;
     display: flex;
     flex-direction: column;
-    width: 100%;
+    align-items: center;
+    width: 80%;
 
     label{
         font-size: 1.2em;
@@ -52,4 +54,8 @@
 .pasosButton{
     margin-top: 2rem;
     align-self: flex-end;
+}
+
+.paso{
+    width: 100%;
 }

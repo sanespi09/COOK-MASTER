@@ -61,7 +61,7 @@ export default function Dash ({ recetas }){
     return(
         <IngredientDispatch.Provider value={dispatch}>
             <Layout activeIng={state.ingredients}>
-                <section className={styles.main}>
+                <section className={styles.section}>
                     <div className={styles.ingredients}>
                         <IngredientBox onRemove={removeIngredient} ingredients={state.ingredients} />
                     </div>

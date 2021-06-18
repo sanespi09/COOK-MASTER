@@ -9,8 +9,7 @@
     gap: 1rem;
 }
 
-.main{
-    margin-top: 10rem;
+.section{
     display: flex;
     flex-direction: column;
     gap: 2rem;
