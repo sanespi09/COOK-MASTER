@@ -1,7 +1,7 @@
 import styles from '../styles/ButtonPurp.module.css'
 
-export default function ButtonPurp ({content, width, height}) {
+export default function ButtonPurp ({content, font, height, width}) {
     return (
-        <button style={{ width: width, height: height}} className={styles.button}>{content}</button>
+        <button style={{height: height, fontSize: font, width: width}} className={styles.button}>{content}</button>
     )
 }

@@ -14,14 +14,16 @@ body{
 
 body[data-theme="light"]{
   --colors-bg: #ffe65bd8;
-  --primary-color: #fff10a;
+  --primary-color: #fff98a;
   --text-color: black; 
+  --text-color-warn: #b41818;
 }
 
 body[data-theme="dark"]{
   --colors-bg: #ffe65bd8;
   --primary-color: #fff10a;
-  --text-color: black; 
+  --text-color: black;
+  --text-color-warn: #964040; 
 }
 
 a {
