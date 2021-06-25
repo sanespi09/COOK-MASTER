@@ -16,6 +16,8 @@ export async function getServerSideProps(context){
         response.forEach( doc => {
             recetas.push(doc.data())
         })
+        
+        recetas = recetas.reverse();
 
         return {props: { recetas }}
 }
@@ -58,6 +60,8 @@ export default function Dash ({ recetas }){
         })
     }
 
+    const recipeRender = recipeList();
+
     return(
         <IngredientDispatch.Provider value={dispatch}>
             <Layout activeIng={state.ingredients}>
@@ -65,11 +69,11 @@ export default function Dash ({ recetas }){
                     <div className={styles.ingredients}>
                         <IngredientBox onRemove={removeIngredient} ingredients={state.ingredients} />
                     </div>
-                    <div className={styles.recipesContainer}>
-                        <div className={styles.recipes}>
-                            {recipeList()}
-                        </div>
-                    </div>
+                    <div className={styles.recipes}>
+                        { recipeRender.length === 0 ? 
+                        <div className={styles.emptyMssg}>No se ha encontrado ninguna receta...</div> :
+                         recipeRender }
+                     </div>
                 </section>
             </Layout>
         </IngredientDispatch.Provider>

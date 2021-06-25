@@ -44,6 +44,19 @@ export default function useFormSubmit ( onSubmit ){
         }
     }
 
+    const handleIngChange = (ing) => {
+        setValues({
+            ...values,
+            ingredients: ing
+        })
+        
+        let error = validate('ingredients', ing);
+        setErrors({
+            ...errors,
+            ingredients: error
+        })
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         let errorObject = {...errors};
@@ -112,11 +125,11 @@ export default function useFormSubmit ( onSubmit ){
                 } else error =  '';
                 break;
         }
-
+        console.log(error);
         return error;
     }
 
-    return [values, errors, handleChange, handleSubmit, handleBlur];
+    return [values, errors, handleChange, handleSubmit, handleBlur, handleIngChange];
      
 }
 

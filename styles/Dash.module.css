@@ -1,5 +1,7 @@
 .recipes{
-    width: 60%;
+    width: 90%;
+    max-width: 1000px;
+    min-height: 400px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -9,15 +11,32 @@
     gap: 1rem;
 }
 
+.emptyMssg {
+    animation: fadeIn .5s forwards ease-in-out;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
 .section{
     display: flex;
     flex-direction: column;
     gap: 2rem;
     align-items: center;
+    padding-bottom: 300px;
 }
 
 .ingredients{
-    width: 40%;
+    width: 90%;
+    max-width: 700px;
+}
+
+@keyframes fadeIn {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
 }
 
 

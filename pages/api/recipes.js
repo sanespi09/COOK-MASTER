@@ -1,44 +1,30 @@
 import { db } from "./firebase";
+import { v1 as uuid } from "uuid";
 
-// const recipes = [
-//   {
-//     id:1,
-//     name: 'Risotto Capresse con Pollo',
-//     ingredients: ['Arroz', 'Pollo', 'Cebolla', 'Ajo', 'Tomate', 'Jengibre'],
-//     description: 'Risotto de arroz carnaroli con perfil de Capresse, sumado a una carne blanca para dar contundencia. Sabor Alimonado, Dulce y Terroso'
-//   },
-//   {
-//     id:2,
-//     name: 'Risotto Capresse con Pollo',
-//     ingredients: ['Arroz', 'Pollo', 'Cebolla', 'Ajo', 'Tomate', 'Jengibre'],
-//     description: 'Risotto de arroz carnaroli con perfil de Capresse, sumado a una carne blanca para dar contundencia. Sabor Alimonado, Dulce y Terroso'
-//   },
-//   {
-//     id:3,
-//     name: 'Risotto Capresse con Pollo',
-//     ingredients: ['Arroz', 'Pollo', 'Cebolla', 'Ajo', 'Tomate', 'Jengibre'],
-//     description: 'Risotto de arroz carnaroli con perfil de Capresse, sumado a una carne blanca para dar contundencia. Sabor Alimonado, Dulce y Terroso'
-//   },
-//   {
-//     id:4,
-//     name: 'Risotto Capresse con Pollo',
-//     ingredients: ['Arroz', 'Pollo', 'Cebolla', 'Ajo', 'Tomate', 'Jengibre'],
-//     description: 'Risotto de arroz carnaroli con perfil de Capresse, sumado a una carne blanca para dar contundencia. Sabor Alimonado, Dulce y Terroso'
-//   },
-//   {
-//     id:5,
-//     name: 'Risotto Capresse con Pollo',
-//     ingredients: ['Arroz', 'Pollo', 'Cebolla', 'Ajo', 'Tomate', 'Jengibre'],
-//     description: 'Risotto de arroz carnaroli con perfil de Capresse, sumado a una carne blanca para dar contundencia. Sabor Alimonado, Dulce y Terroso'
-//   },
-// ]
 
-// export default (req, res) => {
-//   if( req.method === 'POST' ){
-//     db.
-//   }
-//   console.log(data);
-//   res.status(200).send(recipes.json());
-// } 
+export default (req, res) => {
+  if( req.method === 'POST' ){
+    try {
+        addRecipe(req.body);
+    }
+   catch(err){
+       throw error;
+   }
+   res.status(200);
+   }
+} 
 
-// export default recipes;
+async function addRecipe(receta){
+    let body = JSON.parse(receta);
+    let recipe = {
+        ...body,
+        id: uuid()
+    }
+
+    try{
+        let response = await db.collection('recipes').doc(recipe.name.replace(' ', '-')).set(recipe);
+        console.log(response);
+    } catch (err) {
+        throw err;
+    }
+}

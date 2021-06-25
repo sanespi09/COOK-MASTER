@@ -1,11 +1,11 @@
-import styles from '../styles/Recipe.module.css'
+import styles from '../styles/Recipe.module.scss'
 import Ingredient from './Ingredient'
 import IngredientDispatch from './context/IngredientDispatch';
 import { useContext } from 'react';
 
 export default function Recipe ({recipe}){
     const dispatch = useContext(IngredientDispatch);
-    const {name, ingredients, description} = recipe;
+    const {name, ingredients, description, steps} = recipe;
 
 
     function handleIngClick(ing){
@@ -28,6 +28,9 @@ export default function Recipe ({recipe}){
             </div>
             <div className={styles.description}>
                 <p>{description}</p>
+            </div>
+            <div className={styles.additional}>
+                {steps ? <div className={styles.steps}>{steps.length} {steps.length > 1 ? 'pasos' : 'paso'} </div> : ''}
             </div>
         </div>
     )

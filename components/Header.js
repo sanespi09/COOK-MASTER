@@ -24,7 +24,7 @@ export default function Header ({activeIng}) {
                 <ul className={styles.navList}>
                     <Link href="/dash">
                     <li className={styles.misRecetas}>
-                        <ButtonSub content='Mis Recetas' width='100px' height='50px' />
+                        <ButtonSub content='Mis Recetas' height='50px' />
                     </li>
                     </Link>
                     <Link href="/create">

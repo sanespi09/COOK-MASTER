@@ -1,10 +1,11 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import ButtonPurp from '../components/ButtonPurp';
+import ButtonSub from '../components/ButtonSub';
 import Link from 'next/link'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.css';
 
 export default function Home() {
+
   return (
     <div className={styles.container}>
       <Head>
@@ -23,9 +24,16 @@ export default function Home() {
           </div>
           <Link href="/dash">
             <div className={styles.button}>
-                <ButtonPurp content='Ingresar' height='50px' width='150px'/>
+                <ButtonPurp font='1.2em' content='Ingresar' height='50px' width='150px'/>
             </div>
           </Link>
+          <div>
+            <Link href="/register">
+              <div className={styles.button}>
+                <ButtonSub content='Registrate' font='1em' />
+              </div>
+            </Link>
+          </div>
         </div>
       </main>
 

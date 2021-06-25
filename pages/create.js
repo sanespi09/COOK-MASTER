@@ -1,5 +1,6 @@
-import Layout from '../components/Layout'
+import Layout from '../components/Layout';
 import IngredientBox from '../components/IngredientBox';
+import Router from 'next/router';
 import ButtonSub from '../components/ButtonSub';
 import ButtonPurp from '../components/ButtonPurp';
 import { useReducer, useState, useEffect } from 'react';
@@ -9,26 +10,33 @@ import styles from '../styles/Create.module.scss';
 import useFormSubmit from '../hooks/useFormSubmit';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { v1 as uuidv1 } from 'uuid';
+
 export default function Create ( props ){
 
-    const onFormSubmit = (values) => {
-        fetch('api/recipes', {
-            method: 'POST',
-            body: values
-        })
+    const onFormSubmit = async (values) => {
         console.log(values);
+        let response = await fetch('/api/recipes', {
+            method: 'POST',
+            body: JSON.stringify(values)
+        })
+
+        if(response.ok === true){
+            setRecetaAgregada(true);
+            setTimeout( () => Router.push('/dash'), 2000);
+        };
     }
 
+    const [ recetaAgregada, setRecetaAgregada ] = useState();
     const [ state, dispatch ] = useReducer(IngredientReducer, { ingredients: []});
     const [ pasos, setPasos ] = useState([{id:uuidv1(), value:''}]);
-    const [ values, errors, handleChange, handleSubmit, handleBlur ] = useFormSubmit(onFormSubmit);
+    const [ values, errors, handleChange, handleSubmit, handleBlur, handleIngChange ] = useFormSubmit(onFormSubmit);
 
     const removeIngredient = (name) => {
         dispatch({ type: 'remove' , payload: name });
     };
 
     useEffect( () => {
-        values.ingredients = state.ingredients;
+        handleIngChange(state.ingredients);
     }, [ state ]);
 
 
@@ -119,7 +127,10 @@ export default function Create ( props ){
                             <div className={styles.submitForm}>
                                 <ButtonPurp content='Crear' height='50px' width='150px' font='1.5em' />
                             </div>  
-                        </div>  
+                        </div>
+                        { recetaAgregada ? 
+                          <div className={styles.createFeedback}>Su receta se agrego correctamente!</div> :
+                          ''}
                     </form>
                 </section>
             </Layout>
