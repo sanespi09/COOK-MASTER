@@ -8,16 +8,29 @@
     transition: background-color .2s ease-in-out;
     padding: 1rem;
     display: flex;
-    justify-content: space-between;
     border-bottom: 4px solid black;
 }
 
 .logo{
     margin-left: 1rem;
 }
-
+.userSpace{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.user{
+    font-weight: 600;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    margin-left: 2rem;
+    cursor: pointer;
+}
 .nav{
     display: flex;
+    justify-items: flex-end;
+    margin-left: auto;
     align-items:center;
     justify-content: space-between;
 }
@@ -48,6 +61,7 @@
 
 .sideButton{
     display: flex;
+    align-self: flex-end;
     align-items: center;
     margin-right: 1rem;
     cursor: pointer;

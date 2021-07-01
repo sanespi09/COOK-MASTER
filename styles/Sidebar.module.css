@@ -19,5 +19,5 @@
     border-left: 4px solid black;
     width: 20%;
     height: 100vh;
-    transition: transform .5s ease-in-out;
+    transition: transform .3s ease-in-out;
 }

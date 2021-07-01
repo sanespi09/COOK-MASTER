@@ -1,6 +1,8 @@
-import styles from '../styles/Dash.module.css';
-import { useState, useEffect, useReducer } from 'react';
-import Layout from '../components/Layout'
+import styles from '../styles/Dash.module.scss';
+import { useState, useEffect, useReducer, useContext } from 'react';
+import useRecipes from '../hooks/useRecipes';
+import Link from 'next/link';
+import Layout from '../components/Layout';
 import Recipe from '../components/Recipe';
 import IngredientBox from '../components/IngredientBox';
 import IngredientDispatch from '../components/context/IngredientDispatch';
@@ -8,33 +10,51 @@ import IngredientReducer from '../reducer/IngredientReducer';
 import { db } from './api/firebase';
 
 
-export async function getServerSideProps(context){
-        let recetas = [];
+// export async function getServerSideProps(context){
+//         let recetas = [];
 
-        const response = await db.collection('recipes').get();
-        // const recetas = await response.data(); 
-        response.forEach( doc => {
-            recetas.push(doc.data())
-        })
+//         const response = await db.collection('recipes').get();
+//         // const recetas = await response.data(); 
+//         response.forEach( doc => {
+//             recetas.push(doc.data())
+//         })
         
-        recetas = recetas.reverse();
+//         recetas = recetas.reverse();
 
-        return {props: { recetas }}
-}
+//         return {props: { recetas }}
+// }
 
 
-export default function Dash ({ recetas }){
+export default function Dash ({ UserContext }){
 
-    const [ recipes, setRecipes ] = useState(recetas);
+    const [ recipes, setRecipes ] = useState(null);
+    const currentUser = useContext(UserContext);
     const [ state, dispatch ] = useReducer(IngredientReducer, { ingredients: []});
+    const [ getRecipes ] = useRecipes();
+    
+    // console.log(currentUser);
 
     const removeIngredient = (name) => {
         dispatch({ type: 'remove' , payload: name });
     }
 
-    console.log(recipes);
+    useEffect(() => {
+        async function fetchRecipes () {
+            let userRecipes = await getRecipes(currentUser);
+            console.log(userRecipes);
+            setRecipes(userRecipes);
+        }
 
-    const recipeList = () => {
+        if (currentUser){
+            fetchRecipes();
+            console.log(currentUser)
+        }
+    }, [ currentUser ]);
+
+    // console.log(recipes);
+
+    const recipeRender = () => {
+    
         let selectedRecipes;
 
         if(state.ingredients.length > 0){
@@ -52,15 +72,20 @@ export default function Dash ({ recetas }){
             selectedRecipes = recipes; 
         }
 
-        return selectedRecipes
+        return selectedRecipes.length > 0 ?
+        selectedRecipes
         .map(recipe => {
             return (
-                    <Recipe recipe={recipe} key={recipe.id} />
+                <Link href={`/recipe/${recipe.id}`}>
+                    <div key={recipe.id} >
+                        <Recipe recipe={recipe} />
+                    </div>
+                </Link>
             )
-        })
-    }
+        }) :
+        <div className={styles.emptyMssg}>No se ha encontrado ninguna receta...</div> 
+    };
 
-    const recipeRender = recipeList();
 
     return(
         <IngredientDispatch.Provider value={dispatch}>
@@ -70,10 +95,9 @@ export default function Dash ({ recetas }){
                         <IngredientBox onRemove={removeIngredient} ingredients={state.ingredients} />
                     </div>
                     <div className={styles.recipes}>
-                        { recipeRender.length === 0 ? 
-                        <div className={styles.emptyMssg}>No se ha encontrado ninguna receta...</div> :
-                         recipeRender }
-                     </div>
+                        { recipes ? recipeRender() : 
+                        <div className={styles.spinner}></div> }
+                    </div>
                 </section>
             </Layout>
         </IngredientDispatch.Provider>

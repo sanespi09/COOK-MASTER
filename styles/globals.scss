@@ -5,14 +5,15 @@ body{
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   // background-color: rgb(var(--colors-bg));
-  background: url('../public/background-pattern.jpg');
-  box-shadow: inset 0 0 0 100vh var(--colors-bg);
+  background: linear-gradient(#ffe65bca), url('../public/background-pattern.jpg') ;
+  // box-shadow: inset 0 0 0 100vh var(--colors-bg);
+  -webkit-appearance: none;
   background-size: 400px;
   transition: all .2s ease-in-out;
   color: var(--text-color);
 }
 
-body[data-theme="light"]{
+body[data-theme="light"], body{
   --colors-bg: #ffe65bd8;
   --primary-color: #fff98a;
   --text-color: black;
@@ -44,7 +45,7 @@ button{
   color: none;
 }
 
-input{
+input, textarea{
   margin-top: 1rem;
   background-color: rgb(253, 253, 173);
   width: 100%;
@@ -57,4 +58,37 @@ input{
   border-radius: 10px;
   line-height: 100%;
   box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.404);
+}
+
+.modal-content{
+  background-color: blanchedalmond;
+  opacity: 1;
+  width: 80vw;
+  max-width: 500px;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+.modal-overlay{
+  transition: opacity .2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.31);
+}
+
+.ReactModal__Overlay{
+  opacity: 0;
+}
+
+.ReactModal__Overlay--after-open{
+  opacity: 1;
 }

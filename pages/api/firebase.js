@@ -1,9 +1,11 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore';
+import 'firebase/auth';
 
 const firebaseConfig = {
     apiKey: "AIzaSyDM8uayG1WzruM57wm5igDl6_BpXsIyAow",
     authDomain: "cookmaster-b9178.firebaseapp.com",
+    databaseURL: "cookmaster-b9178.firebaseio.com",
     projectId: "cookmaster-b9178",
     storageBucket: "cookmaster-b9178.appspot.com",
     messagingSenderId: "816396502657",

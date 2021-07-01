@@ -22,7 +22,7 @@ async function addRecipe(receta){
     }
 
     try{
-        let response = await db.collection('recipes').doc(recipe.name.replace(' ', '-')).set(recipe);
+        let response = await db.collection('users').doc(recipe.name.replace(' ', '-')).set(recipe);
         console.log(response);
     } catch (err) {
         throw err;

@@ -21,7 +21,11 @@ class MyDocument extends Document {
     
     return (
       <Html>
-        <Head />
+        <Head>
+          {/* <title>Cook Master</title> */}
+          <meta name="description" content="" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
         <body>
           <script dangerouslySetInnerHTML={{ __html: setInitialTheme }} />
           <Main />

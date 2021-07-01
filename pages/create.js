@@ -3,29 +3,35 @@ import IngredientBox from '../components/IngredientBox';
 import Router from 'next/router';
 import ButtonSub from '../components/ButtonSub';
 import ButtonPurp from '../components/ButtonPurp';
-import { useReducer, useState, useEffect } from 'react';
+import { useReducer, useState, useEffect, useContext } from 'react';
 import IngredientDispatch from '../components/context/IngredientDispatch';
 import IngredientReducer from '../reducer/IngredientReducer';
 import styles from '../styles/Create.module.scss';
 import useFormSubmit from '../hooks/useFormSubmit';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { v1 as uuidv1 } from 'uuid';
+import { db } from './api/firebase';
 
-export default function Create ( props ){
+export default function Create ( { UserContext } ){
 
     const onFormSubmit = async (values) => {
         console.log(values);
-        let response = await fetch('/api/recipes', {
-            method: 'POST',
-            body: JSON.stringify(values)
-        })
+        let recipe = {
+            ...values,
+            id: uuidv1()
+        }
 
-        if(response.ok === true){
-            setRecetaAgregada(true);
-            setTimeout( () => Router.push('/dash'), 2000);
-        };
+        try{
+            let response = await db.collection('users').doc(currentUser.uid).collection('recipes').add(recipe);
+            console.log(response);
+            setRecetaAgregada('Su receta se creo con exito!');
+            setTimeout(() => Router.push('/dash'), 2000);
+        } catch (err) {
+            throw err;
+        }
     }
-
+    
+    const currentUser = useContext(UserContext);
     const [ recetaAgregada, setRecetaAgregada ] = useState();
     const [ state, dispatch ] = useReducer(IngredientReducer, { ingredients: []});
     const [ pasos, setPasos ] = useState([{id:uuidv1(), value:''}]);
