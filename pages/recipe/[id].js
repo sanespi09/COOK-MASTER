@@ -1,7 +1,8 @@
 import Layout from "../../components/Layout";
+import Ingredient from "../../components/Ingredient";
 import styles from "../../styles/RecipePage.module.scss";
 import { useContext, useEffect, useState } from "react";
-import { db, firebase } from "../api/firebase";
+import { db } from "../api/firebase";
 import "firebase/auth";
 import { useRouter } from "next/router";
 import { v1 as uuid } from "uuid";
@@ -41,12 +42,12 @@ export default function RecipePage({ UserContext }) {
       <div className={styles.section}>
         {recipe ? (
           <div className={styles.container}>
-            <div className={styles.ingredients}>
-              {recipe.ingredients.map((ing) => {
-                return <Ingredient ingredient={ing} key={uuid()} />;
-              })}
-            </div>
             <div className={styles.title}>
+              <div className={styles.ingredients}>
+                {recipe.ingredients.map((ing) => {
+                  return <Ingredient name={ing} key={uuid()} />;
+                })}
+              </div>
               <h2> {recipe.name} </h2>
             </div>
             <div className={styles.description}>
