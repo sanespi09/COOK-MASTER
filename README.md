@@ -1,4 +1,4 @@
-# COOKMASTER 🧑🏼‍🍳 (WIP)
+# COOKMASTER 🧑🏼‍🍳
 Personal recipe catalog with indexing capabilites based on ingredients used  
 and time-complexity of the recipe. 
 
